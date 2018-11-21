@@ -7,8 +7,9 @@ defmodule SnitchApi.ProductsContext do
 
   import Ecto.Query, only: [from: 2, order_by: 2]
 
-  @filter_allowables ~w(taxon_id brand_id is_active)a
-  @partial_search_allowables ~w(name slug)a
+  @filter_allowables ~w(taxon_id brand_id)a
+  @partial_search_allowables ~w(name)a
+  @default_filter [is_active: true]
 
   @doc """
   List out all the products
@@ -189,7 +190,7 @@ defmodule SnitchApi.ProductsContext do
   defp filter_query(query, nil, _allowables), do: query
 
   defp filter_query(query, filter_params, allowables) do
-    filter_params = make_filter_params_list(filter_params, allowables)
+    filter_params = @default_filter ++ make_filter_params_list(filter_params, allowables)
 
     from(q in query, where: ^filter_params)
   end

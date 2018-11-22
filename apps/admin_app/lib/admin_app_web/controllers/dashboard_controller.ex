@@ -18,7 +18,7 @@ defmodule AdminAppWeb.DashboardController do
   defp get_naive_date_time(date) do
     Date.from_iso8601(date)
     |> elem(1)
-    |> NaiveDateTime.new(~T[00:00:00])
+    |> NaiveDateTime.new(~T[23:59:59])
     |> elem(1)
   end
 

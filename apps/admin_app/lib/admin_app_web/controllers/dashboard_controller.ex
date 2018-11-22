@@ -23,7 +23,7 @@ defmodule AdminAppWeb.DashboardController do
   end
 
   defp get_date_from_params(params) do
-    start_date = Helpers.get_date_from_params(params, "from") |> get_naive_date_time()
+    start_date = params |> Map.get("from", Helpers.date_days_before(30)) |> get_naive_date_time()
 
     end_date = Helpers.get_date_from_params(params, "to") |> get_naive_date_time()
 

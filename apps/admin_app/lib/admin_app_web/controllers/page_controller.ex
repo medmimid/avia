@@ -5,12 +5,6 @@ defmodule AdminAppWeb.PageController do
 
   def index(conn, _params) do
     conn
-    |> redirect(
-      to:
-        dashboard_path(conn, :index, %{
-          "from" => Helpers.date_days_before(30),
-          "to" => Helpers.date_today()
-        })
-    )
+    |> redirect(to: dashboard_path(conn, :index))
   end
 end
